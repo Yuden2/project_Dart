@@ -7,7 +7,7 @@ void main() async {
 
   int lastUpdateId = 0;
 
-  print('🚀 BOT ONLINE (Modo Manual)');
+  
 
   while (true) {
     try {
@@ -39,7 +39,7 @@ void main() async {
             }
 
             // 2. Lógica de validação (só processa se NÃO for um comando)
-            if (!texto.startsWith('/')) {
+            else if (!texto.startsWith('/')) {
               String resposta = validarCPF(texto) 
                   ? '✅ O CPF $texto é VÁLIDO!' 
                   : '❌ O CPF $texto é INVÁLIDO.';
