@@ -47,15 +47,20 @@ void main() async {
               '👋 Seja Bem vindo(a) ao verificador de CPF!\n\nDigite seu CPF abaixo.\nEx: 000 000 000 00'
             );
           }
+            else if (texto.isNotEmpty && !texto.startsWith('/')) {
+              if (validarCPF(texto)) {
+                await sendMessage(token, chatId, '✅ O CPF $texto é VÁLIDO!');
+              } else {
+                await sendMessage(token, chatId, '❌ O CPF $texto é INVÁLIDO!');
+              }
+            }
+          }
+        }
+      }
+    } catch (e) {
+      print('⚠️ Erro: $e');
+    }
 
-            Future<void> sendMessage(String token, int chatId, String text) async {
-  final url = Uri.parse('https://api.telegram.org/bot$token/sendMessage');
-  try {
-    await http.post(url, body: {
-      'chat_id': chatId.toString(),
-      'text': text,
-    });
-  } catch (e) {
-    print('Erro ao enviar: $e');
+    await Future.delayed(Duration(seconds: 2));
   }
 }
